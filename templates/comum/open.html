@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+
+{% block titulo %} {{ block.super }} - {{ action }} {% endblock titulo %}
+
+{% block content %}
+
+    <div class="box">
+        <div class="box-header with-border">
+          <h4 class="box-title">
+              <a href="{% url 'manager:index' %}"><i class="fa fa-close"></i></a>&nbsp;
+              <a href="#"><i class="fa fa-tv"></i></a>&nbsp;
+              <a href="{% url 'manager:update' site.url %}"><i class="fa fa-edit"></i> </a>
+          </h4>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fa fa-minus"></i></button>
+          </div>
+        </div>
+        <div class="box-body">
+            <h4>{{ site.titulo }}</h4>
+            <p><strong>Descrição:</strong><br>{{ site.descricao }}</p>
+            <p>
+                <strong>Outras informações</strong>
+                <ul>
+                    <li>Data de criação: {{ site.create_at }}</li>
+                    <li>Última atualização: {% if site.update_at %}{{ site.update_at }}{% endif %}</li>
+                    <li>Última publicação: {% if site.public_at %}{{ site.public_at }}{% else %}aguardando{% endif %}</li>
+                    <li>Categoria:  site {{ site.workflow|lower }}</li>
+                    <li>Status: {% if site.status %}Liberado{% else %}Aguadando liberação{% endif %}</li>
+                    <li>Email: {% if site.email %} {{ site.email }} {% else %} Não informado {% endif %}</li>
+                    <li>Telefone: {% if site.telefone %} {{ site.telefone }} {% else %} Não informado {% endif %}</li>
+                    <li>Favicon: {% if site.favicon %}<a href="{{ site.favicon.url}}" target="_blank">Visualizar</a>{% else %} Não informado {% endif %}</li>
+                    <li>Brasão/Logo: {% if site.logo %}<a href="{{ site.logo.url}}" target="_blank">Visualizar</a>{% else %} Não informado {% endif %}</li>
+                    <li>Banner de dstaque: {% if site.banner_topo %}<a href="{{ site.banner_topo.url}}" target="_blank">Visualizar</a>{% else %} Não informado {% endif %}</li>
+                </ul>
+                <strong>Midias Sociais</strong>
+                 <ul>
+                    <li>Facebook: {% if site.facebook_link %}{{ site.facebook_link }}{% else %} Não informado{% endif %}</li>
+                    <li>Twitter: {% if site.twitter_link %}{{ site.twitter_link }}{% else %} Não informado{% endif %}</li>
+                    <li>YouTube: {% if site.youtube_link %}{{ site.youtube_link }}{% else %} Não informado{% endif %}</li>
+                    <li>Google+: {% if site.google_link %}{{ site.google_link }}{% else %} Não informado{% endif %}</li>
+                 </ul>
+                <strong>Desenvolvedor</strong>
+                 <ul>
+                    <li>Facebook: {% if site.facebook_cod %}<pre>{{ site.facebook_cod }}</pre>{% else %} <pre>Não informado</pre>{% endif %}</li>
+                    <li>Twitter: {% if site.twitter_cod %}<pre>{{ site.twitter_cod }}</pre>{% else %}<pre>Não informado</pre>{% endif %}</li>
+                    <li>YouTube: {% if site.youtube_cod %}<pre>{{ site.youtube_cod }}</pre>{% else %}<pre>Não informado</pre>{% endif %}</li>
+                    <li>Google+: {% if site.google_cod %}<pre>{{ site.google_cod }}</pre>{% else %} <pre>Não informado</pre>{% endif %}</li>
+                    <li>Flicker: {% if site.flicker_cod %}<pre>{{ site.flicker_cod }}</pre>{% else %} <pre>Não informado</pre>{% endif %}</li>
+                    <li>Conteúdo estático html: {% if site.html_cod %}<pre>{{ site.html_cod }}</pre>{% else %} <pre>Não informado</pre>{% endif %}</li>
+                    <li>Estatisticas do site: {% if site.analytic_cod %}<pre>{{ site.analytic_cod }}</pre>{% else %} <pre>Não informado</pre>{% endif %}</li>
+                    <li>Conteúdo texto rodapé: {% if site.texto_rodape %}<pre>{{ site.texto_rodape }}</pre>{% else %} <pre>Não informado</pre>{% endif %}</li>
+                 </ul>
+                <strong>Usuários</strong>
+                <ul>
+                    <li>Não informado</li>
+                </ul>
+            </p>
+        </div>
+      </div>
+
+{% endblock content %}
