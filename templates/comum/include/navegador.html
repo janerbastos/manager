@@ -1,0 +1,24 @@
+{% load mamba_tags %}
+
+<li>
+    <a href="{% url 'manager:index' %}">
+    <i class="fa fa-th"></i> <span>Sites</span>
+    <span class="pull-right-container">
+    <small class="label pull-right bg-green">{% has_total_sites %}</small>
+    </span>
+    </a>
+
+    <a href="{% url 'security:list_user' %}">
+    <i class="fa fa-th"></i> <span>Usuários</span>
+    <span class="pull-right-container">
+    <small class="label pull-right bg-green">{% has_total_usuarios %}</small>
+    </span>
+    </a>
+
+    <a href="{% url 'security:list_grupo' %}">
+    <i class="fa fa-th"></i> <span>Grupos</span>
+    <span class="pull-right-container">
+    <small class="label pull-right bg-green">{% has_total_grupos %}</small>
+    </span>
+    </a>
+</li>
