@@ -3,7 +3,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from mamba.models import Site
 from manager.forms.site_forms import SiteForm
-from manager.processadores import site_proc, user_proc
+from manager.processadores import site_proc
+from security.processadores import grupo_proc
 
 
 def index(request):
@@ -68,18 +69,4 @@ def open_site(request, site_id):
     }
 
     return render(request, template, context)
-
-
-def create_update_user(request, user_id=None):
-    if user_id:
-        action = request.GET.get('action', None)
-        if not action:
-            action = 'update'
-        return user_proc.view(request, action=action, user_id=user_id)
-    else:
-        return user_proc.view(request, action='create')
-
-
-def list_user(request):
-    return user_proc.view(request, action='list')
 

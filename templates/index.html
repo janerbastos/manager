@@ -1,5 +1,17 @@
 {% extends 'admin/layout.html' %}
 
+{% block navegador %}
+    {% include 'comum/include/navegador.html' %}
+{% endblock navegador %}
+
+{% block navegafor_topo %}
+    {% include 'comum/include/navegador_top.html' %}
+{% endblock navegafor_topo %}
+
+{% block sid-bar %}
+    {% include 'comum/include/sidbar.html' %}
+{% endblock sid-bar %}
+
 {% block content_wrapper %}
 <!-- Content Header (Page header) -->
     <section class="content-header">
