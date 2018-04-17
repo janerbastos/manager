@@ -1,4 +1,5 @@
 {% extends 'index.html' %}
+{% load mamba_tags %}
 
 {% block titulo %} {{ block.super }} - {{ action }} {% endblock titulo %}
 
@@ -7,14 +8,15 @@
     <div class="box">
         <div class="box-header with-border">
           <h4 class="box-title">
-              <a href="{% url 'manager:index' %}"><i class="fa fa-close"></i></a>&nbsp;
-              <a href="#"><i class="fa fa-tv"></i></a>&nbsp;
-              <a href="{% url 'manager:update' site.url %}"><i class="fa fa-edit"></i> </a>
+              <a href="{% url 'manager:index' %}" title="Fechar"><i class="fa fa-close"></i></a>&nbsp;
+              <a href="{% url 'manager:open' site.url %}?action=redes-sociais" title="Redes Sociais"><i class="fa fa-retweet"></i></a>&nbsp
+              <a href="{% url 'manager:open' site.url %}?action=desenvolvedor" title="Desenvolvedor"><i class="fa fa-cogs"></i></a>&nbsp;
+              <a href="{% url 'manager:update' site.url %}" title="Editar contéudo princípal"><i class="fa fa-edit"></i> </a>
           </h4>
 
           <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fa fa-minus"></i></button>
+            <a href="{% url 'manager:index' %}" class="btn btn-box-tool" data-toggle="tooltip" title="Fechar">
+              <i class="fa fa-times"></i></a>
           </div>
         </div>
         <div class="box-body">
@@ -53,9 +55,7 @@
                     <li>Conteúdo texto rodapé: {% if site.texto_rodape %}<pre>{{ site.texto_rodape }}</pre>{% else %} <pre>Não informado</pre>{% endif %}</li>
                  </ul>
                 <strong>Usuários</strong>
-                <ul>
-                    <li>Não informado</li>
-                </ul>
+                {% has_usuarios_deste_site site %}
             </p>
         </div>
       </div>

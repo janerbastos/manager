@@ -6,7 +6,7 @@ from mamba.models import Site, ContentType
 
 class UserSite(models.Model):
     user = models.ForeignKey(User)
-    site = models.ForeignKey(Site)
+    site = models.ForeignKey(Site, related_name='rel_sites')
     grupo = models.ManyToManyField('Grupo', related_name='rel_grupos_sites')
 
     class Meta:

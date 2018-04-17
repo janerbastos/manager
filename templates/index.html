@@ -1,4 +1,5 @@
 {% extends 'admin/layout.html' %}
+{% load staticfiles %}
 
 {% block navegador %}
     {% include 'comum/include/navegador.html' %}
@@ -31,12 +32,12 @@
         <div class="box-header with-border">
           <h3 class="box-title">Sites deste Serviço</h3>
 
-          <div class="box-tools pull-right">
+          <!--<div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
+            <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></a>
+          </div>-->
         </div>
         <div class="box-body">
           {% if sites %}
@@ -53,8 +54,20 @@
                     <td>{{site.url}}</td>
                     <td>{{site.titulo}}</td>
                     <td>&nbsp
-                        <a href="{% url 'manager:update' site.url %}"><i class="fa fa-pencil"></i></a>
-                        <a href="{% url 'manager:open' site.url %}"><i class="fa fa-folder"></i></a>
+                        <a href="{% url 'manager:open' site.url %}"><i class="fa fa-folder"></i></a>&nbsp;
+                        <a href="{% url 'manager:update' site.url %}"><i class="fa fa-pencil"></i></a>&nbsp;
+                        <a href="#" title="Vicular usuário ao site"
+                           data-toggle="modal"
+                           data-target="#vincular_usuario_site"
+                           data-nome="{{ site.titulo }}"
+                           data-action="vincular"
+                           data-url="{{ site.get_configure_url }}"><i class="fa fa-users"></i></a>&nbsp;
+                        <a href="#" title="Desvincular usuário ao site"
+                           data-toggle="modal"
+                           data-target="#vincular_usuario_site"
+                           data-nome="{{ site.titulo }}"
+                           data-action="desvincular"
+                           data-url="{{ site.get_configure_url }}"><i class="fa fa-exchange"></i></a>
                     </td>
                 </tr>
             {% endfor %}
@@ -68,4 +81,10 @@
     {% endblock content %}
     </section>
     <!-- /.content -->
+
+    {% include 'security/includes/usuarios_deste_site.html' %}
 {% endblock content_wrapper %}
+
+{% block static_file_botton %}
+    <script src="{% static 'js/security_vincular_usuario.js' %}"></script>
+{% endblock static_file_botton %}

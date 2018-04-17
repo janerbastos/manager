@@ -53,7 +53,7 @@ class SiteDesenvolvedorForm(ModelForm):
             'flicker_cod': 'Flicker',
             'analytic_cod': 'Estatisticas do site',
             'html_cod': 'Conteúdo estático html',
-            'texto_rodape': 'Texto statico rodapé',
+            'texto_rodape': 'Texto estático rodapé',
         }
 
         widgets = {

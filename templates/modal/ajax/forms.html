@@ -1,4 +1,28 @@
 {% load bootstrap %}
-
+{% if option == 'vincular-usuario-site' %}
+    <ul>
+    {% if users %}
+    {% for u in users %}
+        <li><input type="checkbox" class="cbx" value="{{u.id}}" name="usuarios">&nbsp;
+        <span>{{ u.get_full_name }}</span></li>
+    {% endfor %}
+    {% else%}
+        <li><strong>Nenhum usuário encontrado.</strong></li>
+    {% endif %}
+    </ul>
+{% elif option == 'desvincular-usuario-site' %}
+    <ul>
+    {% if users %}
+    {% for u in users %}
+        <li><input type="checkbox" class="cbx" value="{{u.user.id}}" name="usuarios">&nbsp;
+        <span>{{ u.user.get_full_name }}</span></li>
+    {% endfor %}
+    {% else%}
+        <li><strong>Nenhum usuário encontrado.</strong></li>
+    {% endif %}
+    </ul>
+{% else %}
 {% csrf_token %}
 {{ form|bootstrap }}
+
+{% endif %}
