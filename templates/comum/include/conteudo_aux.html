@@ -1,0 +1,11 @@
+{% if option == 'user-site' %}
+    <ul>
+    {% if users %}
+        {% for u in users %}
+            <li>{{ u.user.get_full_name }}</li>
+        {% endfor %}
+    {% else %}
+        <li><strong>Nenhum usuário informado.</strong></li>
+    {% endif %}
+    </ul>
+{% endif %}
