@@ -15,6 +15,7 @@ class UserSite(models.Model):
 
 class Grupo(models.Model):
     nome = models.CharField(max_length=60, unique=True)
+    papeis = models.ManyToManyField('Papel', related_name='rel_papeis')
 
     def __unicode__(self):
         return self.nome
@@ -22,7 +23,7 @@ class Grupo(models.Model):
 
 class GrupoPapel(models.Model):
     grupo = models.ForeignKey('Grupo', related_name='rel_grupos_papeis')
-    papeis = models.ManyToManyField('Papel', related_name='rel_papeis')
+    papeis = models.ManyToManyField('Papel', related_name='rel_papeis_grupos')
 
     def __unicode__(self):
         return self.grupo.nome
